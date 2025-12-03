@@ -7,39 +7,61 @@ import Link from 'next/link';
 export default function Home() {
   return (
     <div className="bg-white">
+      {/* HERO */}
       <section className="relative bg-gradient-to-br from-orange-50 via-amber-50 to-orange-100 py-12 md:py-20">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
-                Find a private chef for your next event
+                Trouvez un chef privé pour votre prochain événement
               </h1>
               <p className="text-xl text-slate-600">
-                Book verified chefs for unforgettable dining experiences at home
+                Réservez des chefs vérifiés pour des expériences culinaires inoubliables à domicile
               </p>
-              <Button asChild size="lg" className="bg-orange-500 hover:bg-orange-600 text-lg px-8 py-6 h-auto">
-                <Link href="/chefs">Find a chef</Link>
+              <Button
+                asChild
+                size="lg"
+                className="bg-orange-500 hover:bg-orange-600 text-lg px-8 py-6 h-auto"
+              >
+                <Link href="/chefs">Trouver un chef</Link>
               </Button>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-3">
-                <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400" alt="Food" className="rounded-2xl w-full aspect-square object-cover" />
-                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400" alt="Food" className="rounded-2xl w-full aspect-[4/3] object-cover" />
+                <img
+                  src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400"
+                  alt="Cuisine"
+                  className="rounded-2xl w-full aspect-square object-cover"
+                />
+                <img
+                  src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400"
+                  alt="Cuisine"
+                  className="rounded-2xl w-full aspect-[4/3] object-cover"
+                />
               </div>
               <div className="space-y-3 pt-8">
-                <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400" alt="Food" className="rounded-2xl w-full aspect-[4/3] object-cover" />
-                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400" alt="Food" className="rounded-2xl w-full aspect-square object-cover" />
+                <img
+                  src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400"
+                  alt="Cuisine"
+                  className="rounded-2xl w-full aspect-[4/3] object-cover"
+                />
+                <img
+                  src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400"
+                  alt="Cuisine"
+                  className="rounded-2xl w-full aspect-square object-cover"
+                />
               </div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* PROCESS */}
       <section className="py-16 bg-slate-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-2">We&apos;ve made it very easy</h2>
+            <h2 className="text-4xl font-bold mb-2">Un processus très simple</h2>
             <Heart className="h-6 w-6 text-red-500 fill-red-500 mx-auto" />
           </div>
 
@@ -47,23 +69,29 @@ export default function Home() {
             {[
               {
                 image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600',
-                title: 'Browse our chefs',
-                description: 'Search for chefs based on cuisine, location, and budget',
+                title: 'Parcourez nos chefs',
+                description:
+                  'Recherchez des chefs selon le type de cuisine, la localisation et le budget',
               },
               {
                 image: 'https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=600',
-                title: 'Send an inquiry',
-                description: 'Chat directly with chefs to discuss your event details',
+                title: 'Envoyez une demande',
+                description: 'Discutez directement avec les chefs de votre événement',
               },
               {
                 image: 'https://images.unsplash.com/photo-1595273670150-bd0c3c392e46?w=600',
-                title: 'Book with confidence',
-                description: 'Secure payment and verified reviews for peace of mind',
+                title: 'Réservez en toute confiance',
+                description:
+                  'Paiement sécurisé et avis vérifiés pour une tranquillité d’esprit',
               },
             ].map((step, idx) => (
               <Card key={idx} className="overflow-hidden">
                 <div className="relative h-48">
-                  <img src={step.image} alt={step.title} className="w-full h-full object-cover" />
+                  <img
+                    src={step.image}
+                    alt={step.title}
+                    className="w-full h-full object-cover"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
                     <h3 className="text-white font-bold text-xl">{step.title}</h3>
                   </div>
@@ -77,29 +105,39 @@ export default function Home() {
         </div>
       </section>
 
+      {/* REASONS / STATS */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-2 text-center">Just a few reasons to book yhangry</h2>
+          <h2 className="text-4xl font-bold mb-2 text-center">
+            Pourquoi réserver avec GetChef
+          </h2>
           <p className="text-center text-slate-600 mb-12">🔥</p>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto items-center">
             <div>
-              <img src="https://images.unsplash.com/photo-1555244162-803834f70033?w=600" alt="Food" className="rounded-2xl w-full aspect-[4/3] object-cover" />
+              <img
+                src="https://images.unsplash.com/photo-1555244162-803834f70033?w=600"
+                alt="Cuisine"
+                className="rounded-2xl w-full aspect-[4/3] object-cover"
+              />
             </div>
 
             <div className="space-y-8">
               <div>
-                <div className="text-5xl font-bold mb-2">18693</div>
-                <p className="text-slate-600">Private chefs events completed on yhangry</p>
+                <div className="text-5xl font-bold mb-2">18 693</div>
+                <p className="text-slate-600">
+                  Événements avec chef à domicile réalisés via GetChef
+                </p>
               </div>
 
               <div className="space-y-4">
-                <h3 className="text-2xl font-bold">Birthday</h3>
+                <h3 className="text-2xl font-bold">Anniversaire</h3>
                 <p className="text-slate-600">
-                  Whether it&apos;s a milestone birthday or an intimate celebration, our chefs create personalized menus to make your special day unforgettable.
+                  Des anniversaires intimes aux grandes célébrations, nos chefs
+                  personnalisent les menus pour un moment inoubliable.
                 </p>
                 <Button asChild variant="outline" className="mt-4">
-                  <Link href="/chefs">Browse chefs</Link>
+                  <Link href="/chefs">Découvrir les chefs</Link>
                 </Button>
               </div>
             </div>
@@ -107,21 +145,38 @@ export default function Home() {
         </div>
       </section>
 
+      {/* CUISINES */}
       <section className="py-16 bg-slate-50">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold mb-8 text-center">
-            Our chefs create bespoke menus tailored to your occasion
+            Des menus personnalisés pour toutes les occasions
           </h2>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             {[
-              { img: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400', title: 'Fine Dining' },
-              { img: 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400', title: 'BBQ & Grill' },
-              { img: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400', title: 'Asian Fusion' },
-              { img: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400', title: 'Italian' },
+              {
+                img: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400',
+                title: 'Gastronomie',
+              },
+              {
+                img: 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400',
+                title: 'Barbecue & Grill',
+              },
+              {
+                img: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400',
+                title: 'Fusion asiatique',
+              },
+              {
+                img: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400',
+                title: 'Italien',
+              },
             ].map((item, idx) => (
               <div key={idx} className="relative rounded-xl overflow-hidden aspect-square">
-                <img src={item.img} alt={item.title} className="w-full h-full object-cover" />
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  className="w-full h-full object-cover"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
                   <span className="text-white font-semibold">{item.title}</span>
                 </div>
@@ -130,17 +185,18 @@ export default function Home() {
           </div>
 
           <div className="text-center">
-            <Button className="bg-orange-500 hover:bg-orange-600">
-              Discover all cuisines
+            <Button className="bg-orange-500 hover:bg-orange-600 text-white">
+              Découvrir toutes les cuisines
             </Button>
           </div>
         </div>
       </section>
 
+      {/* CHEFS GRID TEASER */}
       <section className="py-16 bg-gradient-to-br from-orange-500 to-orange-600 text-white">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold mb-2 text-center">
-            1000+ amazing chefs, who love to do it!
+            1 000+ chefs talentueux, passionnés par leur métier
           </h2>
           <p className="text-center text-white/80 mb-12">😍</p>
 
@@ -148,7 +204,7 @@ export default function Home() {
             {[1, 2, 3, 4, 5].map((i) => (
               <div key={i} className="relative aspect-square rounded-xl overflow-hidden">
                 <img
-                  src={`https://images.unsplash.com/photo-${1556910103 + i * 1000}-1c02745aae4d?w=400`}
+                  src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=400"
                   alt={`Chef ${i}`}
                   className="w-full h-full object-cover"
                 />
@@ -158,42 +214,51 @@ export default function Home() {
 
           <div className="text-center">
             <Button asChild variant="secondary" size="lg">
-              <Link href="/chefs">See all chefs</Link>
+              <Link href="/chefs">Voir tous les chefs</Link>
             </Button>
           </div>
         </div>
       </section>
 
+      {/* PRICING */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center space-y-8">
-            <h2 className="text-4xl font-bold">Find any chef for any budget</h2>
+            <h2 className="text-4xl font-bold">Des chefs pour tous les budgets</h2>
 
             <div className="bg-slate-50 rounded-2xl p-8 inline-block">
-              <div className="text-6xl font-bold mb-2">£75 - £120</div>
-              <p className="text-slate-600">per person</p>
+              <div className="text-6xl font-bold mb-2">75€ - 120€</div>
+              <p className="text-slate-600">par personne en moyenne</p>
             </div>
 
             <div className="flex items-center justify-center gap-4">
               <div className="flex -space-x-2">
                 {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="w-12 h-12 rounded-full bg-slate-300 border-2 border-white" />
+                  <div
+                    key={i}
+                    className="w-12 h-12 rounded-full bg-slate-300 border-2 border-white"
+                  />
                 ))}
               </div>
-              <p className="text-slate-600">Trusted by thousands</p>
+              <p className="text-slate-600">Des milliers de clients satisfaits</p>
             </div>
 
-            <Button asChild size="lg" className="bg-orange-500 hover:bg-orange-600">
-              <Link href="/chefs">Find a chef</Link>
+            <Button
+              asChild
+              size="lg"
+              className="bg-orange-500 hover:bg-orange-600 text-white"
+            >
+              <Link href="/chefs">Trouver un chef</Link>
             </Button>
           </div>
         </div>
       </section>
 
+      {/* TESTIMONIALS */}
       <section className="py-16 bg-slate-50">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold mb-12 text-center">
-            What our customers say about us
+            Ce que nos clients disent de nous
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
@@ -201,32 +266,38 @@ export default function Home() {
               {
                 name: 'SANDRA',
                 rating: 5,
-                review: 'Amazing experience from start to finish. The chef was professional, creative, and the food was outstanding. Highly recommend!',
+                review:
+                  'Expérience incroyable du début à la fin. Le chef était professionnel, créatif et les plats étaient excellents.',
               },
               {
                 name: 'REBECCA',
                 rating: 5,
-                review: 'We had the most wonderful evening. The chef was friendly, accommodating and the food was incredible. Will definitely book again.',
+                review:
+                  'Une soirée parfaite. Le chef était adorable, à l’écoute, et le repas exceptionnel.',
               },
               {
                 name: 'MICHAEL',
                 rating: 5,
-                review: 'Absolutely fantastic service. The chef arrived on time, was very professional and the food exceeded all expectations.',
+                review:
+                  'Service fantastique. Ponctuel, très professionnel et une cuisine au-delà de nos attentes.',
               },
               {
                 name: 'CHRIS',
                 rating: 5,
-                review: 'Best dining experience we have had at home. The chef was brilliant and the menu was perfect for our celebration.',
+                review:
+                  'Meilleure expérience culinaire à domicile. Parfait pour notre événement.',
               },
               {
                 name: 'EMMA',
                 rating: 5,
-                review: 'From booking to the actual event, everything was seamless. The chef was amazing and our guests loved every dish.',
+                review:
+                  'De la réservation au dîner, tout était fluide. Nos invités ont adoré.',
               },
               {
                 name: 'DAVID',
                 rating: 5,
-                review: 'Exceptional quality and service. The chef tailored the menu to our preferences perfectly. A truly memorable experience.',
+                review:
+                  'Qualité exceptionnelle. Menu parfaitement adapté à nos goûts.',
               },
             ].map((testimonial, idx) => (
               <Card key={idx}>
@@ -239,7 +310,10 @@ export default function Home() {
                       <div className="font-bold">{testimonial.name}</div>
                       <div className="flex">
                         {Array.from({ length: testimonial.rating }).map((_, i) => (
-                          <Star key={i} className="h-4 w-4 fill-orange-400 text-orange-400" />
+                          <Star
+                            key={i}
+                            className="h-4 w-4 fill-orange-400 text-orange-400"
+                          />
                         ))}
                       </div>
                     </div>
@@ -252,38 +326,43 @@ export default function Home() {
         </div>
       </section>
 
+      {/* TRUST / SAFETY */}
       <section className="py-16 bg-slate-50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
             <Card className="bg-white shadow-lg">
               <CardContent className="p-8">
                 <h3 className="text-3xl font-bold mb-6 text-slate-900">
-                  We&apos;ve got you covered
+                  On s’occupe de tout
                 </h3>
                 <ul className="space-y-4 text-slate-700">
                   <li className="flex items-start gap-3">
                     <CheckCircle className="h-5 w-5 text-green-600 shrink-0 mt-1" />
-                    <span>Full insurance coverage</span>
+                    <span>Assurance complète</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="h-5 w-5 text-green-600 shrink-0 mt-1" />
-                    <span>Secure payment protection</span>
+                    <span>Paiement sécurisé</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="h-5 w-5 text-green-600 shrink-0 mt-1" />
-                    <span>24/7 customer support</span>
+                    <span>Support client 7j/7</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="h-5 w-5 text-green-600 shrink-0 mt-1" />
-                    <span>Verified chef profiles</span>
+                    <span>Chefs vérifiés</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle className="h-5 w-5 text-green-600 shrink-0 mt-1" />
-                    <span>Flexible cancellation policy</span>
+                    <span>Politique d’annulation flexible</span>
                   </li>
                 </ul>
                 <div className="mt-6">
-                  <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400" alt="Food" className="rounded-xl w-full aspect-video object-cover" />
+                  <img
+                    src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400"
+                    alt="Cuisine"
+                    className="rounded-xl w-full aspect-video object-cover"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -291,23 +370,22 @@ export default function Home() {
             <Card className="bg-white shadow-lg">
               <CardContent className="p-8">
                 <h3 className="text-3xl font-bold mb-6 text-slate-900">
-                  Trust & safety certified
+                  Confiance & sécurité
                 </h3>
                 <p className="text-slate-700 mb-6">
-                  All our chefs undergo rigorous verification and background checks to ensure your safety and satisfaction.
+                  Tous nos chefs sont rigoureusement vérifiés pour garantir votre
+                  satisfaction.
                 </p>
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
                     <CheckCircle className="h-5 w-5 text-green-600" />
-                    <span className="text-slate-700">DBS checked</span>
+                    <span className="text-slate-700">
+                      Certifiés hygiène alimentaire
+                    </span>
                   </div>
                   <div className="flex items-center gap-3">
                     <CheckCircle className="h-5 w-5 text-green-600" />
-                    <span className="text-slate-700">Food safety certified</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="h-5 w-5 text-green-600" />
-                    <span className="text-slate-700">Verified reviews</span>
+                    <span className="text-slate-700">Avis vérifiés</span>
                   </div>
                 </div>
               </CardContent>
@@ -316,161 +394,61 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-16 bg-slate-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-4 text-center">
-            Why hire private chef for your event with yhangry
-          </h2>
-          <p className="text-center text-slate-600 mb-12">
-            The easiest way to book a private chef
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {[
-              {
-                icon: '👨‍🍳',
-                title: 'Verified professional chefs',
-                description: 'All our chefs are background checked, insured and have years of professional experience.',
-              },
-              {
-                icon: '💬',
-                title: 'Direct communication',
-                description: 'Chat directly with your chef to create your perfect menu and discuss every detail of your event.',
-              },
-              {
-                icon: '🍽️',
-                title: 'Bespoke menus',
-                description: 'Work with your chef to create a completely customized menu tailored to your preferences and dietary requirements.',
-              },
-              {
-                icon: '💰',
-                title: 'Transparent pricing',
-                description: 'No hidden fees. See exactly what you are paying for with our transparent pricing structure.',
-              },
-              {
-                icon: '⭐',
-                title: 'Rated and reviewed',
-                description: 'Read genuine reviews from verified customers to help you choose the perfect chef.',
-              },
-              {
-                icon: '🔒',
-                title: 'Secure payments',
-                description: 'Your payment is protected and only released to the chef after your successful event.',
-              },
-            ].map((feature, idx) => (
-              <div key={idx} className="text-center space-y-3">
-                <div className="text-5xl mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-bold">{feature.title}</h3>
-                <p className="text-slate-600">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-12 text-center">
-            We have amazing partners who use us for their own customers
-          </h2>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="relative aspect-square rounded-xl overflow-hidden">
-                <img
-                  src={`https://images.unsplash.com/photo-${1556910103 + i * 5000}-1c02745aae4d?w=400`}
-                  alt={`Partner ${i}`}
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 bg-slate-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-12 text-center">
-            Frequently asked questions
-          </h2>
-
-          <div className="max-w-3xl mx-auto space-y-4">
-            {[
-              {
-                q: 'How far in advance should I book?',
-                a: 'We recommend booking at least 2-4 weeks in advance, especially for weekends and special occasions.',
-              },
-              {
-                q: 'What\'s included in the price?',
-                a: 'The price includes the chef\'s service, ingredients, preparation, cooking, and clearing up.',
-              },
-              {
-                q: 'Can the chef accommodate dietary requirements?',
-                a: 'Yes, all our chefs can accommodate various dietary requirements including vegetarian, vegan, gluten-free, and allergies.',
-              },
-              {
-                q: 'What if I need to cancel?',
-                a: 'We offer flexible cancellation up to 7 days before your event for a full refund.',
-              },
-            ].map((faq, idx) => (
-              <Card key={idx}>
-                <CardContent className="pt-6">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <h3 className="font-bold text-lg mb-2">{faq.q}</h3>
-                      <p className="text-slate-600">{faq.a}</p>
-                    </div>
-                    <ChevronRight className="h-5 w-5 text-slate-400 shrink-0" />
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          <div className="text-center mt-8">
-            <Button variant="outline" size="lg">
-              View all FAQs
-            </Button>
-          </div>
-        </div>
-      </section>
-
+      {/* NEWSLETTER */}
       <section className="py-20 bg-gradient-to-br from-orange-500 to-orange-600 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Receive local chef & menu launches as well as exclusive content
+            Recevez les nouveautés chefs & menus près de chez vous
           </h2>
           <p className="text-xl mb-8 opacity-90">
-            Join thousands of food lovers
+            Rejoignez des milliers de passionnés de gastronomie
           </p>
           <div className="max-w-md mx-auto flex gap-3">
             <Input
               type="email"
-              placeholder="Enter your email"
+              placeholder="Entrez votre email"
               className="bg-white text-slate-900 h-14"
             />
             <Button size="lg" variant="secondary" className="h-14 px-8">
-              Subscribe
+              S’inscrire
             </Button>
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-gradient-to-br from-orange-500 to-orange-600 text-white">
+      {/* CITIES – FOND BLANC POUR ÉVITER LE TROP-PLEIN D’ORANGE */}
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto text-center space-y-6">
-            <h2 className="text-3xl font-bold">
-              Find the best private chef for your event
+            <h2 className="text-3xl font-bold text-slate-900">
+              Trouvez le meilleur chef privé près de chez vous
             </h2>
             <div className="flex flex-wrap justify-center gap-3">
-              {['Paris', 'Lyon', 'Marseille', 'Bordeaux', 'Nice', 'Toulouse', 'Nantes', 'Lille'].map(city => (
-                <Button key={city} variant="outline" className="text-white border-white hover:bg-white hover:text-orange-600">
+              {[
+                'Paris',
+                'Lyon',
+                'Marseille',
+                'Bordeaux',
+                'Nice',
+                'Toulouse',
+                'Nantes',
+                'Lille',
+              ].map((city) => (
+                <Button
+                  key={city}
+                  variant="outline"
+                  className="border-orange-500 text-orange-600 hover:bg-orange-50 hover:text-orange-700"
+                >
                   Chefs à {city}
                 </Button>
               ))}
             </div>
-            <Button asChild size="lg" className="bg-white text-orange-600 hover:bg-white/90 mt-8">
-              <Link href="/chefs">Explore all locations</Link>
+            <Button
+              asChild
+              size="lg"
+              className="bg-orange-500 text-white hover:bg-orange-600 mt-8"
+            >
+              <Link href="/chefs">Voir toutes les villes</Link>
             </Button>
           </div>
         </div>
