@@ -1,10 +1,56 @@
+'use client';
+
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Star, Heart, CheckCircle, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
+import { useToast } from '@/hooks/use-toast';
 
 export default function Home() {
+  const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      toast({
+        title: "Email invalide",
+        description: "Veuillez entrer une adresse email valide.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsLoading(true);
+
+    // Simulate API call
+    try {
+      // TODO: Replace with actual API call to newsletter service
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      toast({
+        title: "Inscription réussie !",
+        description: "Merci de vous être inscrit à notre newsletter.",
+      });
+
+      setEmail('');
+    } catch (error) {
+      toast({
+        title: "Erreur",
+        description: "Une erreur s'est produite. Veuillez réessayer.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="bg-white">
       {/* HERO */}
@@ -403,16 +449,25 @@ export default function Home() {
           <p className="text-xl mb-8 opacity-90">
             Rejoignez des milliers de passionnés de gastronomie
           </p>
-          <div className="max-w-md mx-auto flex gap-3">
+          <form onSubmit={handleNewsletterSubmit} className="max-w-md mx-auto flex gap-3">
             <Input
               type="email"
               placeholder="Entrez votre email"
               className="bg-white text-slate-900 h-14"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={isLoading}
             />
-            <Button size="lg" variant="secondary" className="h-14 px-8">
-              S’inscrire
+            <Button
+              type="submit"
+              size="lg"
+              variant="secondary"
+              className="h-14 px-8"
+              disabled={isLoading}
+            >
+              {isLoading ? 'En cours...' : 'S\'inscrire'}
             </Button>
-          </div>
+          </form>
         </div>
       </section>
 
