@@ -1,7 +1,17 @@
+import type { Metadata } from 'next';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Heart, Target, Users, Award, ChefHat } from 'lucide-react';
 import Link from 'next/link';
+import { APP_NAME, APP_URL } from '@/lib/constants';
+
+export const metadata: Metadata = {
+  title: `À propos de ${APP_NAME} - Notre histoire`,
+  description: `Découvrez ${APP_NAME}, la plateforme de réservation de chefs privés. Notre mission : démocratiser la gastronomie à domicile et créer des moments inoubliables.`,
+  alternates: {
+    canonical: `${APP_URL}/about`,
+  },
+};
 
 export default function AboutPage() {
   return (

@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import { ChefFilters } from '@/components/chef/chef-filters';
 import { ChefsGrid } from '@/components/chef/chefs-grid';
@@ -6,6 +7,21 @@ import { SortSelect } from '@/components/chef/sort-select';
 import { MobileFiltersButton } from '@/components/chef/mobile-filters-button';
 import { Pagination } from '@/components/chef/pagination';
 import { ChefSearchBar } from '@/components/search/chef-search-bar';
+import { APP_NAME, APP_URL } from '@/lib/constants';
+
+export const metadata: Metadata = {
+  title: 'Trouvez un Chef Privé près de chez vous',
+  description: 'Parcourez notre sélection de chefs privés vérifiés. Cuisine française, italienne, japonaise... Trouvez le chef idéal pour votre événement à domicile.',
+  alternates: {
+    canonical: `${APP_URL}/chefs`,
+  },
+  openGraph: {
+    title: 'Trouvez un Chef Privé près de chez vous',
+    description: 'Parcourez notre sélection de chefs privés vérifiés partout en France.',
+    url: `${APP_URL}/chefs`,
+    type: 'website',
+  },
+};
 
 const MOCK_CHEFS = [
   {
@@ -253,8 +269,3 @@ export default async function ChefsPage({
     </div>
   );
 }
-
-export const metadata = {
-  title: 'Trouvez votre chef privé | GetChef',
-  description: 'Réservez un chef étoilé pour vos événements privés. Plus de 500 chefs vérifiés en France.',
-};

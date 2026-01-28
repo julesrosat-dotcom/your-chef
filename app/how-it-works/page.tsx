@@ -1,7 +1,17 @@
+import type { Metadata } from 'next';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ChefHat, Search, MessageCircle, Calendar, CreditCard, Star, Shield, Clock } from 'lucide-react';
 import Link from 'next/link';
+import { APP_URL } from '@/lib/constants';
+
+export const metadata: Metadata = {
+  title: 'Comment réserver un Chef Privé - Guide complet',
+  description: 'Découvrez comment réserver un chef privé en 3 étapes simples. Recherchez, échangez et réservez votre chef en toute confiance. Paiement sécurisé garanti.',
+  alternates: {
+    canonical: `${APP_URL}/how-it-works`,
+  },
+};
 
 export default function HowItWorksPage() {
   return (
