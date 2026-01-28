@@ -4,6 +4,9 @@ import { useState } from 'react';
 import { X, ChevronLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
+import { CalendarPicker } from '@/components/ui/calendar-picker';
+import { format } from 'date-fns';
+import { fr } from 'date-fns/locale';
 
 interface FormData {
   prestation: string;
@@ -32,6 +35,7 @@ interface ChefBookingFormProps {
 export function ChefBookingForm({ onClose }: ChefBookingFormProps) {
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 11;
+  const [selectedDates, setSelectedDates] = useState<Date[]>([]);
   const [formData, setFormData] = useState<FormData>({
     prestation: '',
     ville: '',
@@ -98,7 +102,7 @@ export function ChefBookingForm({ onClose }: ChefBookingFormProps) {
       case 2:
         return <Step2 formData={formData} setFormData={setFormData} />;
       case 3:
-        return <Step3 formData={formData} setFormData={setFormData} />;
+        return <Step3 formData={formData} setFormData={setFormData} selectedDates={selectedDates} setSelectedDates={setSelectedDates} />;
       case 4:
         return <Step4 formData={formData} setFormData={setFormData} />;
       case 5:
@@ -237,22 +241,57 @@ function Step2({ formData, setFormData }: any) {
   );
 }
 
-function Step3({ formData, setFormData }: any) {
+function Step3({ formData, setFormData, selectedDates, setSelectedDates }: any) {
+  const isMultiDate = formData.prestation === 'Chef à demeure';
+
+  const handleDateSelect = (date: Date) => {
+    if (isMultiDate) {
+      const isAlreadySelected = selectedDates.some((d: Date) =>
+        d.toDateString() === date.toDateString()
+      );
+
+      if (isAlreadySelected) {
+        const newDates = selectedDates.filter((d: Date) =>
+          d.toDateString() !== date.toDateString()
+        );
+        setSelectedDates(newDates);
+        setFormData({
+          ...formData,
+          dates: newDates.map((d: Date) => format(d, 'dd/MM/yyyy', { locale: fr })).join(', ')
+        });
+      } else {
+        const newDates = [...selectedDates, date].sort((a, b) => a.getTime() - b.getTime());
+        setSelectedDates(newDates);
+        setFormData({
+          ...formData,
+          dates: newDates.map((d: Date) => format(d, 'dd/MM/yyyy', { locale: fr })).join(', ')
+        });
+      }
+    } else {
+      setSelectedDates([date]);
+      setFormData({
+        ...formData,
+        dates: format(date, 'dd/MM/yyyy', { locale: fr })
+      });
+    }
+  };
+
   return (
     <div className="text-center space-y-8">
       <div>
         <h2 className="text-3xl font-semibold mb-4">Quand ?</h2>
         <p className="text-gray-600">
-          Sélectionnez la ou les dates pour lesquelles vous avez besoin d'un chef
+          {isMultiDate
+            ? 'Sélectionnez les dates pour lesquelles vous avez besoin d\'un chef'
+            : 'Sélectionnez la date pour laquelle vous avez besoin d\'un chef'
+          }
         </p>
       </div>
-      <div className="max-w-md mx-auto">
-        <input
-          type="date"
-          value={formData.dates}
-          onChange={(e) => setFormData({ ...formData, dates: e.target.value })}
-          className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none text-center"
-          min={new Date().toISOString().split('T')[0]}
+      <div className="flex justify-center">
+        <CalendarPicker
+          selectedDates={selectedDates}
+          onDateSelect={handleDateSelect}
+          multiSelect={isMultiDate}
         />
       </div>
     </div>
