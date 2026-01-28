@@ -49,11 +49,11 @@ export function Header() {
           </Link>
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           {loading ? (
             <Skeleton className="h-9 w-9 rounded-full hidden md:block" />
           ) : user ? (
-            <div className="hidden md:block">
+            <div className="hidden md:flex items-center gap-3">
               <UserDropdown />
             </div>
           ) : (

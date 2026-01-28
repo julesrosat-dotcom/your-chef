@@ -15,7 +15,11 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { signupSchema, type SignupFormData } from '@/lib/validations/auth';
 import { useToast } from '@/hooks/use-toast';
 
-export function SignupForm() {
+interface SignupFormProps {
+  hideFooter?: boolean;
+}
+
+export function SignupForm({ hideFooter = false }: SignupFormProps) {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -242,12 +246,14 @@ export function SignupForm() {
         Créer mon compte
       </Button>
 
-      <div className="text-center text-sm text-gray-600">
-        Déjà un compte ?{' '}
-        <Link href="/auth/signin" className="font-medium text-orange-500 hover:underline">
-          Se connecter
-        </Link>
-      </div>
+      {!hideFooter && (
+        <div className="text-center text-sm text-gray-600">
+          Déjà un compte ?{' '}
+          <Link href="/auth/signin" className="font-medium text-orange-500 hover:underline">
+            Se connecter
+          </Link>
+        </div>
+      )}
     </form>
   );
 }

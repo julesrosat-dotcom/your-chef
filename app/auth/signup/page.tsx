@@ -1,5 +1,5 @@
 import { AuthLayout } from '@/components/auth/auth-layout';
-import { SignupForm } from '@/components/auth/signup-form';
+import { UnifiedAuthForm } from '@/components/auth/unified-auth-form';
 
 export const metadata = {
   title: 'Inscription - GetChef',
@@ -9,10 +9,10 @@ export const metadata = {
 export default function SignupPage() {
   return (
     <AuthLayout
-      title="Créez votre compte"
+      title="Créer un compte ou se connecter"
       subtitle="Rejoignez des milliers de gourmets satisfaits"
     >
-      <SignupForm />
+      <UnifiedAuthForm initialMode="signup" />
     </AuthLayout>
   );
 }

@@ -1,5 +1,5 @@
 import { AuthLayout } from '@/components/auth/auth-layout';
-import { SigninForm } from '@/components/auth/signin-form';
+import { UnifiedAuthForm } from '@/components/auth/unified-auth-form';
 
 export const metadata = {
   title: 'Connexion - GetChef',
@@ -9,10 +9,10 @@ export const metadata = {
 export default function SigninPage() {
   return (
     <AuthLayout
-      title="Connectez-vous"
+      title="Créer un compte ou se connecter"
       subtitle="Accédez à votre compte pour gérer vos réservations"
     >
-      <SigninForm />
+      <UnifiedAuthForm initialMode="signin" />
     </AuthLayout>
   );
 }

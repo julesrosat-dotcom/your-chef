@@ -15,7 +15,11 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { signinSchema, type SigninFormData } from '@/lib/validations/auth';
 import { useToast } from '@/hooks/use-toast';
 
-export function SigninForm() {
+interface SigninFormProps {
+  hideFooter?: boolean;
+}
+
+export function SigninForm({ hideFooter = false }: SigninFormProps) {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -170,12 +174,14 @@ export function SigninForm() {
         Se connecter
       </Button>
 
-      <div className="text-center text-sm text-gray-600">
-        Pas encore de compte ?{' '}
-        <Link href="/auth/signup" className="font-medium text-orange-500 hover:underline">
-          S'inscrire
-        </Link>
-      </div>
+      {!hideFooter && (
+        <div className="text-center text-sm text-gray-600">
+          Pas encore de compte ?{' '}
+          <Link href="/auth/signup" className="font-medium text-orange-500 hover:underline">
+            S'inscrire
+          </Link>
+        </div>
+      )}
     </form>
   );
 }
