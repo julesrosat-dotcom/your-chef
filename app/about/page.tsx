@@ -9,7 +9,7 @@ export default function AboutPage() {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">À propos de ChefPrivé</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">À propos de GetChef</h1>
             <p className="text-xl text-gray-600">
               Notre mission : rendre la gastronomie accessible à tous
             </p>
@@ -17,7 +17,7 @@ export default function AboutPage() {
 
           <div className="prose prose-lg max-w-none mb-16">
             <p className="text-lg text-gray-700 leading-relaxed">
-              ChefPrivé est né d&apos;une passion : celle de démocratiser l&apos;accès à la haute gastronomie
+              GetChef est né d&apos;une passion : celle de démocratiser l&apos;accès à la haute gastronomie
               et de créer des moments inoubliables autour de la table. Nous croyons que chacun mérite
               de vivre une expérience culinaire exceptionnelle, que ce soit pour célébrer un événement
               spécial ou simplement pour le plaisir de partager un repas raffiné avec ses proches.

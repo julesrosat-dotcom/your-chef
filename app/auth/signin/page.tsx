@@ -71,7 +71,7 @@ export default function SignInPage() {
         <div className="text-center">
           <Link href="/" className="inline-flex items-center gap-2 text-2xl font-bold mb-2">
             <ChefHat className="h-8 w-8" />
-            <span>ChefPrivé</span>
+            <span>GetChef</span>
           </Link>
           <h2 className="mt-6 text-3xl font-bold tracking-tight">
             Connexion

@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import { notFound } from 'next/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
@@ -9,6 +12,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Star, MapPin, Heart, Eye, CheckCircle, Phone } from 'lucide-react';
 import Link from 'next/link';
 import { SampleMenusDialog } from '@/components/chef/sample-menus-dialog';
+import { PhotoGallery } from '@/components/chef/photo-gallery';
 
 const MOCK_CHEFS: Record<string, any> = {
   'pierre-gagnaire': {
@@ -279,13 +283,25 @@ const MOCK_CHEFS: Record<string, any> = {
   },
 };
 
-export default async function ChefProfilePage({ params }: { params: { slug: string } }) {
-  const chef = MOCK_CHEFS[params.slug];
-
-  if (!chef) notFound();
+function ChefProfileContent({ chef }: { chef: any }) {
+  const [showFullBio, setShowFullBio] = useState(false);
+  const [expandedReviews, setExpandedReviews] = useState<Set<string>>(new Set());
+  const [showPhotoGallery, setShowPhotoGallery] = useState(false);
 
   const priceInEuros = chef.pricePerPerson / 100;
   const minSpendInEuros = chef.minSpend / 100;
+
+  const toggleReview = (reviewId: string) => {
+    setExpandedReviews(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(reviewId)) {
+        newSet.delete(reviewId);
+      } else {
+        newSet.add(reviewId);
+      }
+      return newSet;
+    });
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -300,7 +316,10 @@ export default async function ChefProfilePage({ params }: { params: { slug: stri
               <div key={idx} className="aspect-square rounded-lg overflow-hidden relative">
                 <img src={img} alt={`Galerie ${idx + 1}`} className="w-full h-full object-cover" />
                 {idx === 3 && (
-                  <button className="absolute inset-0 bg-black/60 flex items-center justify-center text-white font-semibold hover:bg-black/70">
+                  <button
+                    onClick={() => setShowPhotoGallery(true)}
+                    className="absolute inset-0 bg-black/60 flex items-center justify-center text-white font-semibold hover:bg-black/70 transition-colors"
+                  >
                     Voir tout ({chef.totalPhotos})
                   </button>
                 )}
@@ -308,6 +327,24 @@ export default async function ChefProfilePage({ params }: { params: { slug: stri
             ))}
           </div>
         </div>
+
+        {showPhotoGallery && (
+          <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4">
+            <div className="relative w-full max-w-6xl max-h-[90vh] overflow-y-auto bg-white rounded-lg p-6">
+              <button
+                onClick={() => setShowPhotoGallery(false)}
+                className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl font-bold"
+              >
+                ×
+              </button>
+              <h2 className="text-2xl font-bold mb-6">Toutes les photos</h2>
+              <PhotoGallery
+                images={[chef.mainImage, ...chef.galleryImages]}
+                chefName={chef.user.name}
+              />
+            </div>
+          </div>
+        )}
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-6">
@@ -356,7 +393,7 @@ export default async function ChefProfilePage({ params }: { params: { slug: stri
                     <span className="font-semibold">À partir de {priceInEuros}€/pers / Dépense min {minSpendInEuros}€</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span>{chef.bookingCount} événements yhangry</span>
+                    <span>{chef.bookingCount} événements GetChef</span>
                   </div>
                 </div>
               </CardContent>
@@ -365,8 +402,15 @@ export default async function ChefProfilePage({ params }: { params: { slug: stri
             <Card>
               <CardContent className="pt-6">
                 <h2 className="text-xl font-bold mb-4">À propos du chef</h2>
-                <p className="text-slate-700 leading-relaxed mb-4">{chef.bio}</p>
-                <button className="text-orange-600 hover:underline text-sm">...lire la suite</button>
+                <p className="text-slate-700 leading-relaxed mb-4">
+                  {showFullBio ? chef.bio : `${chef.bio.slice(0, 150)}...`}
+                </p>
+                <button
+                  onClick={() => setShowFullBio(!showFullBio)}
+                  className="text-orange-600 hover:underline text-sm font-medium"
+                >
+                  {showFullBio ? '...voir moins' : '...lire la suite'}
+                </button>
 
                 <div className="flex flex-wrap gap-2 mt-6">
                   {chef.personalityBadges.map((badge: string) => (
@@ -471,32 +515,48 @@ export default async function ChefProfilePage({ params }: { params: { slug: stri
               </Card>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                {chef.reviews.map((review: any) => (
-                  <Card key={review.id}>
-                    <CardContent className="pt-6">
-                      <div className="flex items-start justify-between mb-3">
-                        <div>
-                          <div className="font-semibold">{review.clientName}</div>
-                          <div className="flex items-center gap-2 text-sm text-slate-600">
-                            <CheckCircle className="h-4 w-4 text-green-600" />
-                            <span>Avis vérifié</span>
+                {chef.reviews.map((review: any) => {
+                  const isExpanded = expandedReviews.has(review.id);
+                  const truncatedComment = review.comment.length > 150
+                    ? `${review.comment.slice(0, 150)}...`
+                    : review.comment;
+
+                  return (
+                    <Card key={review.id}>
+                      <CardContent className="pt-6">
+                        <div className="flex items-start justify-between mb-3">
+                          <div>
+                            <div className="font-semibold">{review.clientName}</div>
+                            <div className="flex items-center gap-2 text-sm text-slate-600">
+                              <CheckCircle className="h-4 w-4 text-green-600" />
+                              <span>Avis vérifié</span>
+                            </div>
+                            <div className="text-sm text-slate-600">{review.date} • 👍 {review.likes}</div>
                           </div>
-                          <div className="text-sm text-slate-600">{review.date} • 👍 {review.likes}</div>
+                          <div className="flex">
+                            {Array.from({ length: 5 }).map((_, i) => (
+                              <Star key={i} className={`h-4 w-4 ${i < review.rating ? 'fill-orange-400 text-orange-400' : 'text-slate-300'}`} />
+                            ))}
+                          </div>
                         </div>
-                        <div className="flex">
-                          {Array.from({ length: 5 }).map((_, i) => (
-                            <Star key={i} className={`h-4 w-4 ${i < review.rating ? 'fill-orange-400 text-orange-400' : 'text-slate-300'}`} />
-                          ))}
-                        </div>
-                      </div>
-                      <p className="text-slate-700 text-sm leading-relaxed">{review.comment}</p>
-                      <button className="text-orange-600 text-sm hover:underline mt-2">...lire la suite</button>
-                      {review.occasion && (
-                        <Badge variant="outline" className="mt-3">{review.occasion}</Badge>
-                      )}
-                    </CardContent>
-                  </Card>
-                ))}
+                        <p className="text-slate-700 text-sm leading-relaxed">
+                          {isExpanded ? review.comment : truncatedComment}
+                        </p>
+                        {review.comment.length > 150 && (
+                          <button
+                            onClick={() => toggleReview(review.id)}
+                            className="text-orange-600 text-sm hover:underline mt-2 font-medium"
+                          >
+                            {isExpanded ? '...voir moins' : '...lire la suite'}
+                          </button>
+                        )}
+                        {review.occasion && (
+                          <Badge variant="outline" className="mt-3">{review.occasion}</Badge>
+                        )}
+                      </CardContent>
+                    </Card>
+                  );
+                })}
               </div>
 
               <Button variant="outline" className="w-full">
@@ -651,17 +711,10 @@ export default async function ChefProfilePage({ params }: { params: { slug: stri
   );
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
+export default function ChefProfilePage({ params }: { params: { slug: string } }) {
   const chef = MOCK_CHEFS[params.slug];
 
-  if (!chef) {
-    return {
-      title: 'Chef non trouvé',
-    };
-  }
+  if (!chef) notFound();
 
-  return {
-    title: `${chef.user.name} - Chef privé à ${chef.location} | ChefPrivé`,
-    description: chef.bio.slice(0, 160),
-  };
+  return <ChefProfileContent chef={chef} />;
 }

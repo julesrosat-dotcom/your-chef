@@ -28,7 +28,7 @@ export function AuthHeader() {
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 text-xl font-bold">
           <ChefHat className="h-6 w-6" />
-          <span>ChefPrivé</span>
+          <span>GetChef</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-6">

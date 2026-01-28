@@ -8,7 +8,7 @@ import { Toaster } from '@/components/ui/toaster';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'ChefPrivé - Marketplace des chefs privés',
+  title: 'GetChef - Marketplace des chefs privés',
   description: 'Trouvez le chef privé parfait pour vos événements exceptionnels. Réservez en ligne facilement.',
 };
 

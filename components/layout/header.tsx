@@ -30,7 +30,7 @@ export function Header() {
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 text-xl font-bold text-gray-900 hover:text-primary transition-colors">
           <ChefHat className="h-7 w-7 text-primary" />
-          <span>ChefPrivé</span>
+          <span>GetChef</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
@@ -65,7 +65,7 @@ export function Header() {
                 <SheetTitle>
                   <Link href="/" className="flex items-center gap-2 text-xl font-bold">
                     <ChefHat className="h-6 w-6 text-primary" />
-                    <span>ChefPrivé</span>
+                    <span>GetChef</span>
                   </Link>
                 </SheetTitle>
               </SheetHeader>

@@ -37,7 +37,7 @@ export function Footer() {
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2 text-xl font-bold text-gray-900">
               <ChefHat className="h-7 w-7 text-primary" />
-              <span>ChefPrivé</span>
+              <span>GetChef</span>
             </Link>
             <p className="text-sm text-gray-600 leading-relaxed">
               La marketplace des chefs privés pour vos événements exceptionnels. Vivez une expérience culinaire unique.
@@ -156,7 +156,7 @@ export function Footer() {
 
         <div className="mt-12 pt-8 border-t">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-600">
-            <p>&copy; {new Date().getFullYear()} ChefPrivé. Tous droits réservés.</p>
+            <p>&copy; {new Date().getFullYear()} GetChef. Tous droits réservés.</p>
             <div className="flex items-center gap-6">
               <Link href="/terms" className="hover:text-primary transition-colors">
                 Mentions légales

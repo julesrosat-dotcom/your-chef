@@ -255,6 +255,6 @@ export default async function ChefsPage({
 }
 
 export const metadata = {
-  title: 'Trouvez votre chef privé | ChefPrivé',
+  title: 'Trouvez votre chef privé | GetChef',
   description: 'Réservez un chef étoilé pour vos événements privés. Plus de 500 chefs vérifiés en France.',
 };
