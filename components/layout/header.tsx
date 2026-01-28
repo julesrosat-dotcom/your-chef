@@ -4,10 +4,11 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet';
-import { ChefHat, Menu } from 'lucide-react';
+import { ChefHat, Menu, Bell } from 'lucide-react';
 import { UserDropdown } from './user-dropdown';
 import { useUser } from '@/hooks/use-user';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Badge } from '@/components/ui/badge';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -53,8 +54,27 @@ export function Header() {
           {loading ? (
             <Skeleton className="h-9 w-9 rounded-full hidden md:block" />
           ) : user ? (
-            <div className="hidden md:flex items-center gap-3">
+            <div className="hidden md:flex items-center gap-4">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="relative"
+                asChild
+              >
+                <Link href="/dashboard">
+                  <Bell className="h-5 w-5 text-gray-600" />
+                  <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-red-500 text-white text-xs flex items-center justify-center font-semibold">
+                    1
+                  </span>
+                </Link>
+              </Button>
               <UserDropdown />
+              <Button
+                asChild
+                className="bg-orange-500 hover:bg-orange-600 text-white font-medium"
+              >
+                <Link href="/chefs">Trouver un chef</Link>
+              </Button>
             </div>
           ) : (
             <>

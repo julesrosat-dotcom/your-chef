@@ -1,6 +1,6 @@
 'use client';
 
-import { User, LogOut, Calendar, Settings, ChefHat } from 'lucide-react';
+import { User, LogOut, Calendar, Settings, ChefHat, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import {
   DropdownMenu,
@@ -10,8 +10,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { useUser } from '@/hooks/use-user';
+import { Button } from '@/components/ui/button';
 
 export function UserDropdown() {
   const { user, profile, signOut } = useUser();
@@ -27,12 +27,14 @@ export function UserDropdown() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="focus:outline-none">
-        <Avatar className="h-9 w-9 border-2 border-orange-200 cursor-pointer hover:border-orange-400 transition-colors">
-          <AvatarFallback className="bg-orange-100 text-orange-700 font-semibold">
-            {initials}
-          </AvatarFallback>
-        </Avatar>
+      <DropdownMenuTrigger asChild>
+        <Button
+          variant="ghost"
+          className="h-9 px-3 gap-1 hover:bg-gray-100"
+        >
+          <span className="font-semibold text-gray-900">{initials}</span>
+          <ChevronDown className="h-4 w-4 text-gray-600" />
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuLabel>
@@ -65,7 +67,7 @@ export function UserDropdown() {
           </DropdownMenuItem>
         )}
         <DropdownMenuItem asChild>
-          <Link href="/dashboard" className="cursor-pointer">
+          <Link href="/profile" className="cursor-pointer">
             <Settings className="mr-2 h-4 w-4" />
             Paramètres
           </Link>
