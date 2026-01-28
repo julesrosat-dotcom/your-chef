@@ -5,10 +5,14 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { ChefHat, Menu } from 'lucide-react';
+import { UserDropdown } from './user-dropdown';
+import { useUser } from '@/hooks/use-user';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const { user, loading } = useUser();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,12 +50,22 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Button asChild variant="ghost" className="hidden md:inline-flex">
-            <Link href="/auth/signin">Se connecter</Link>
-          </Button>
-          <Button asChild className="hidden md:inline-flex">
-            <Link href="/auth/signin">Devenir chef</Link>
-          </Button>
+          {loading ? (
+            <Skeleton className="h-9 w-9 rounded-full hidden md:block" />
+          ) : user ? (
+            <div className="hidden md:block">
+              <UserDropdown />
+            </div>
+          ) : (
+            <>
+              <Button asChild variant="ghost" className="hidden md:inline-flex">
+                <Link href="/auth/signin">Se connecter</Link>
+              </Button>
+              <Button asChild className="hidden md:inline-flex bg-orange-500 hover:bg-orange-600">
+                <Link href="/auth/signup">S'inscrire</Link>
+              </Button>
+            </>
+          )}
 
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
@@ -92,12 +106,25 @@ export function Header() {
                   À propos
                 </Link>
                 <hr className="my-2" />
-                <Button asChild variant="outline" className="w-full" onClick={() => setIsOpen(false)}>
-                  <Link href="/auth/signin">Se connecter</Link>
-                </Button>
-                <Button asChild className="w-full" onClick={() => setIsOpen(false)}>
-                  <Link href="/auth/signin">Devenir chef</Link>
-                </Button>
+                {user ? (
+                  <>
+                    <Button asChild variant="outline" className="w-full" onClick={() => setIsOpen(false)}>
+                      <Link href="/dashboard">Mon compte</Link>
+                    </Button>
+                    <Button asChild className="w-full bg-orange-500 hover:bg-orange-600" onClick={() => setIsOpen(false)}>
+                      <Link href="/dashboard">Mes réservations</Link>
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button asChild variant="outline" className="w-full" onClick={() => setIsOpen(false)}>
+                      <Link href="/auth/signin">Se connecter</Link>
+                    </Button>
+                    <Button asChild className="w-full bg-orange-500 hover:bg-orange-600" onClick={() => setIsOpen(false)}>
+                      <Link href="/auth/signup">S'inscrire</Link>
+                    </Button>
+                  </>
+                )}
               </nav>
             </SheetContent>
           </Sheet>
