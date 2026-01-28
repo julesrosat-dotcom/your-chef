@@ -1,12 +1,19 @@
+'use client';
+
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Star, Heart, CheckCircle, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
+import { ChefBookingForm } from '@/components/booking/chef-booking-form';
 
 export default function Home() {
+  const [showBookingForm, setShowBookingForm] = useState(false);
   return (
-    <div className="bg-white">
+    <>
+      {showBookingForm && <ChefBookingForm onClose={() => setShowBookingForm(false)} />}
+      <div className="bg-white">
       {/* HERO */}
       <section className="relative bg-gradient-to-br from-orange-50 via-amber-50 to-orange-100 py-12 md:py-20">
         <div className="container mx-auto px-4">
@@ -19,11 +26,11 @@ export default function Home() {
                 Réservez des chefs vérifiés pour des expériences culinaires inoubliables à domicile
               </p>
               <Button
-                asChild
+                onClick={() => setShowBookingForm(true)}
                 size="lg"
                 className="bg-orange-500 hover:bg-orange-600 text-lg px-8 py-6 h-auto"
               >
-                <Link href="/chefs">Trouver un chef</Link>
+                Trouver un chef
               </Button>
             </div>
 
@@ -244,11 +251,11 @@ export default function Home() {
             </div>
 
             <Button
-              asChild
+              onClick={() => setShowBookingForm(true)}
               size="lg"
               className="bg-orange-500 hover:bg-orange-600 text-white"
             >
-              <Link href="/chefs">Trouver un chef</Link>
+              Trouver un chef
             </Button>
           </div>
         </div>
@@ -454,5 +461,6 @@ export default function Home() {
         </div>
       </section>
     </div>
+    </>
   );
 }
