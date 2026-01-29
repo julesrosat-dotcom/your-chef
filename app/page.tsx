@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Star, Heart, CheckCircle, ChevronRight } from 'lucide-react';
+import { Star, Heart, CircleCheck as CheckCircle, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import { ChefBookingForm } from '@/components/booking/chef-booking-form';
 

@@ -9,7 +9,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Star, MapPin, Heart, Eye, CheckCircle, Phone } from 'lucide-react';
+import { Star, MapPin, Heart, Eye, CircleCheck as CheckCircle, Phone } from 'lucide-react';
 import Link from 'next/link';
 import { SampleMenusDialog } from '@/components/chef/sample-menus-dialog';
 import { PhotoGallery } from '@/components/chef/photo-gallery';
