@@ -4,6 +4,8 @@ import { Inter } from 'next/font/google';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Toaster } from '@/components/ui/toaster';
+import { OrganizationSchema, WebsiteSchema } from '@/components/seo/json-ld';
+import { GoogleAnalytics } from '@/components/analytics/google-analytics';
 import { APP_NAME, APP_URL, APP_DESCRIPTION } from '@/lib/constants';
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' });
@@ -91,6 +93,9 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body className={inter.className}>
+        <GoogleAnalytics />
+        <OrganizationSchema />
+        <WebsiteSchema />
         <div className="flex flex-col min-h-screen">
           <Header />
           <main className="flex-1">{children}</main>
